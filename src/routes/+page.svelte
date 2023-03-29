@@ -52,6 +52,8 @@
 
             {#if visibleIntro}
                 <Image src={introImg}/>
+                <br>
+                <h2>A quick demonstration</h2>
                 <div class="btn-wrapper">
                     <Button btnClass on:click={setVisibleAtoms} btnText="Let's go!" value=''/>
                 </div>
@@ -97,7 +99,7 @@
         text-align: center;
     }
     
-    :global(p, h1) {
+    :global(p, h1, h2) {
         font-family: 'Oswald', sans-serif;
     }
 
@@ -139,6 +141,12 @@
         margin-top: 1.2rem;
     }
 
+    h2 {
+        margin-top: 2rem;
+        letter-spacing: .2rem;
+        font-weight: 400;
+    }
+
     .sentence-wrapper {
         display: flex;
         justify-content: space-between;
@@ -162,7 +170,7 @@
     }
 
     .btn-wrapper :global(button) {
-        margin-top: 11rem;
+        margin-top: 5rem;
     }
 
 </style>

@@ -22,15 +22,13 @@
 
 </script>
 
-    <p class="first">This is a molecule consisting of the two prior atoms:</p>
-    <p class="but">(but, with some other characteristics...)</p>
     <div class="wrapper">
         <Input on:input={updateNoOfBtns} {placeholder} bind:value={noOfBtns}/>
         <Button btnClass on:click={addNoOfBtns} value='' btnText=''>
             <i class="fa-solid fa-thumbs-up"></i>
         </Button>
     </div>
-    <p class="enter">enter a number between 1 and 5</p>
+
 
 <style>
 
@@ -38,22 +36,6 @@
         display: flex;
         justify-content: center;
         gap: .5rem;
-    }
-
-    .first {
-        margin-bottom: .5rem;
-    }
-
-    .but {
-        margin-top: 0;
-        color: #C16100;
-        font-size: 18px;
-    }
-
-    .enter {
-        margin: 0;
-        margin-left: -5.5rem;
-        font-size: 16px;
     }
 
 </style>

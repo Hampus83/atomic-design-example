@@ -67,7 +67,10 @@
 
             {:else if visibleButtonPicker}
                 <Image src={moleculesImg}/>
+                <p class="first">This is a molecule consisting of the two prior atoms:</p>
+                <p class="but">(but, with some other characteristics...)</p>
                 <ButtonPicker on:setVisibleSentenceGenerator={setVisibleSentenceGenerator} bind:noOfBtns={noOfBtns}/>
+                <p class="enter">enter a number between 1 and 5</p>
 
             {:else if visibleSentenceGenerator}
                 <Image src={organismsImg}/>
@@ -158,6 +161,22 @@
 
     .input-wrapper {
         width: 80%;
+    }
+
+    .first {
+        margin-bottom: .5rem;
+    }
+
+    .but {
+        margin-top: 0;
+        color: #C16100;
+        font-size: 18px;
+    }
+
+    .enter {
+        margin: 0;
+        margin-left: -5.5rem;
+        font-size: 16px;
     }
 
     .input-wrapper :global(input) {

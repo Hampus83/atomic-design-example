@@ -2,10 +2,11 @@
 
     export let btnText;
     export let value;
+    export let btnClass;
 
 </script>
 
-    <button on:click >{btnText} {value}<slot></slot></button>
+    <button class={btnClass} on:click >{btnText} {value}<slot></slot></button>
 
 <style>
 
@@ -15,14 +16,22 @@
         font-size: 24px;
         background-color: #DC7F28;
         border: 3px solid black;
-        /* min-width: 10rem; */
         padding: .5rem 1.5rem;
         cursor: pointer;
     }
 
     button:hover {
-        /* opacity: .7; */
         background-color: #bf7c3d;
+    }
+
+    .checkedClass {
+        background-color: rgb(20, 85, 20);
+        pointer-events: none;
+    }
+
+    .checkedClass:hover {
+        background-color: rgb(20, 85, 20);
+        pointer-events: none;
     }
 
 </style>

@@ -1,14 +1,21 @@
 <script>
+    import Button from "../components/atoms/Button.svelte";
     import Input from "../components/atoms/Input.svelte";
     import ButtonPicker from "../components/molecules/ButtonPicker.svelte";
-    import TwoAtoms from "../components/molecules/TwoAtoms.svelte";
     import SentenceGenerator from "../components/organisms/SentenceGenerator.svelte";
     import { word } from "../store";
+    import introImg from '../assets/intro.svg';
+    import atomsImg from '../assets/atoms.svg';
+    import moleculesImg from '../assets/molecules.svg';
+    import organismsImg from '../assets/organisms.svg';
+    import Image from "../components/atoms/Image.svelte";
 
-    let visibleAtoms = true;
+    let visibleIntro = true;
+    let visibleAtoms = false;
     let visibleButtonPicker = false;
     let visibleSentenceGenerator = false;
 
+    let value = '';
     let noOfBtns;
     let sentence = [];
     let result;
@@ -18,13 +25,12 @@
 
     const createSentence = () => {
         sentence.push(setWord);
-        console.log(sentence);
-        // result = sentence.map(word => {
-        //     return word;
-        // });
-        // result.toString();
         result = sentence.join(' ');
-        console.log(result);
+    }
+
+    const setVisibleAtoms = () => {
+        visibleIntro = false;
+        visibleAtoms = true;
     }
 
     const setVisibleButtonPicker = () => {
@@ -37,32 +43,41 @@
         visibleSentenceGenerator = true;
     }
 
-    // const test = () => {
-    //     console.log(word);
-    // }
-
 </script>
 
     <main>
         <div class="wrapper">
 
             <h1>Atomic Design</h1>
-            <img src="https://atomicdesign.bradfrost.com/images/content/atomic-design-process.png" alt="">
 
-            {#if visibleAtoms}
-                <TwoAtoms on:setVisibleButtonPicker={setVisibleButtonPicker} />  
+            {#if visibleIntro}
+                <Image src={introImg}/>
+                <div class="btn-wrapper">
+                    <Button btnClass on:click={setVisibleAtoms} btnText="Let's go!" value=''/>
+                </div>
+
+            {:else if visibleAtoms}
+                <Image src={atomsImg}/>
+                <p>This is an atom:</p>
+                <Input bind:value={value} placeholder='Type your name...'/>
+                <p>This is also an atom:</p>
+                <Button btnClass on:click={setVisibleButtonPicker} btnText='Hello' bind:value={value}>, click me!</Button> 
+
             {:else if visibleButtonPicker}
+                <Image src={moleculesImg}/>
                 <ButtonPicker on:setVisibleSentenceGenerator={setVisibleSentenceGenerator} bind:noOfBtns={noOfBtns}/>
+
             {:else if visibleSentenceGenerator}
-            <p class="p">This is an organism containing the same molecule(s) from before, plus the input-atom:</p>
-            <div class="sentence-wrapper">
-                {#each Array(parseInt(noOfBtns)) as component}
-                    <SentenceGenerator on:createSentence={createSentence}/>
-                {/each}
-            </div>
-            <div class="input-wrapper">
-                <Input placeholder='Create a sentence with the inputs...' bind:value={result} />
-            </div>
+                <Image src={organismsImg}/>
+                <p class="p">This is an organism containing the same molecule(s) from before, as well as the input-atom:</p>
+                <div class="sentence-wrapper">
+                    {#each Array(parseInt(noOfBtns)) as component}
+                        <SentenceGenerator on:createSentence={createSentence}/>
+                    {/each}
+                </div>
+                <div class="input-wrapper">
+                    <Input placeholder='Create a sentence with the inputs...' bind:value={result} />
+                </div>
             {/if}
 
         </div>
@@ -103,20 +118,10 @@
     h1 {
         text-transform: uppercase;
         margin-top: 2rem;
-        /* position: absolute; */
         top: 1rem;
         font-size: 42px;
         font-weight: 500;
         letter-spacing: .2rem;
-    }
-
-    img {
-        margin-top: 1rem;
-        /* width: 50%; */
-        width: 600px;
-        height: 150px;
-        object-fit: cover;
-        margin-bottom: 1rem;
     }
 
     :global(p) {
@@ -126,7 +131,7 @@
         padding: 0 .5rem 0 .5rem;
     }
 
-    .p {
+    p {
         letter-spacing: .05rem;
         font-size: 20px;
         margin-bottom: 1rem;
@@ -154,6 +159,10 @@
         border: 2px solid black;
         width: 100%;
         letter-spacing: .05rem;
+    }
+
+    .btn-wrapper :global(button) {
+        margin-top: 11rem;
     }
 
 </style>

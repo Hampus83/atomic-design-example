@@ -5,12 +5,10 @@
 
     let dispatch = createEventDispatcher();
 
-    // let btnText = 'OK';
     let placeholder = '';
     export let noOfBtns = '';
 
     const addNoOfBtns = () => { 
-        console.log(noOfBtns);
         if (noOfBtns >= 1 && noOfBtns <= 5) {
             dispatch('setVisibleSentenceGenerator')
         } else {
@@ -20,10 +18,7 @@
 
     const updateNoOfBtns = (event) => {
         noOfBtns = event.target.value;
-        console.log(noOfBtns);
     }
-
-    console.log(noOfBtns);
 
 </script>
 
@@ -31,25 +26,19 @@
     <p class="but">(but, with some other characteristics...)</p>
     <div class="wrapper">
         <Input on:input={updateNoOfBtns} {placeholder} bind:value={noOfBtns}/>
-        <Button on:click={addNoOfBtns} value='' btnText=''>
+        <Button btnClass on:click={addNoOfBtns} value='' btnText=''>
             <i class="fa-solid fa-thumbs-up"></i>
         </Button>
-        </div>
-        <p class="enter">enter a number between 1 and 5</p>
+    </div>
+    <p class="enter">enter a number between 1 and 5</p>
 
 <style>
 
     .wrapper {
         display: flex;
         justify-content: center;
-        /* align-items: center; */
         gap: .5rem;
     }
-
-    /* .input-wrapper {
-        display: flex;
-        flex-direction: column;
-    } */
 
     .first {
         margin-bottom: .5rem;

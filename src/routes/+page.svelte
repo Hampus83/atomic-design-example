@@ -55,7 +55,6 @@
     <div class="wrapper">
 
         {#if visibleIntro}
-            <!-- <Image src={introImg}/> -->
             <br>
             <h2>A quick demonstration</h2>
             <div class="btn-wrapper">
@@ -63,21 +62,18 @@
             </div>
 
         {:else if visibleAtoms}
-            <!-- <Image src={atomsImg}/> -->
             <p>This is an atom:</p>
             <Input bind:value={value} placeholder='Type your name...'/>
             <p>This is also an atom:</p>
             <Button btnClass on:click={setVisibleButtonPicker} btnText='Hello' bind:value={value}>, click me!</Button> 
 
         {:else if visibleButtonPicker}
-            <!-- <Image src={moleculesImg}/> -->
             <p class="first">This is a molecule consisting of the two prior atoms:</p>
             <p class="but">(but, with some other characteristics...)</p>
             <ButtonPicker on:setVisibleSentenceGenerator={setVisibleSentenceGenerator} bind:noOfBtns={noOfBtns}/>
             <p class="enter">enter a number between 1 and 5</p>
 
         {:else if visibleSentenceGenerator}
-            <!-- <Image src={organismsImg}/> -->
             <p class="p">This is an organism containing the same molecule(s) from before, as well as the input-atom:</p>
             <div class="sentence-wrapper">
                 {#each Array(parseInt(noOfBtns)) as component}

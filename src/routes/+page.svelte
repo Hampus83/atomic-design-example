@@ -45,48 +45,53 @@
 
 </script>
 
-    <main>
-        <div class="wrapper">
+<main>
 
-            <h1>Atomic Design</h1>
+    <h1>Atomic Design</h1>
+    <Image 
+        src={visibleIntro ? introImg : visibleAtoms ? atomsImg : visibleButtonPicker ? moleculesImg : visibleSentenceGenerator ? organismsImg : null}
+    />
 
-            {#if visibleIntro}
-                <Image src={introImg}/>
-                <br>
-                <h2>A quick demonstration</h2>
-                <div class="btn-wrapper">
-                    <Button btnClass on:click={setVisibleAtoms} btnText="Let's go!" value=''/>
-                </div>
+    <div class="wrapper">
 
-            {:else if visibleAtoms}
-                <Image src={atomsImg}/>
-                <p>This is an atom:</p>
-                <Input bind:value={value} placeholder='Type your name...'/>
-                <p>This is also an atom:</p>
-                <Button btnClass on:click={setVisibleButtonPicker} btnText='Hello' bind:value={value}>, click me!</Button> 
+        {#if visibleIntro}
+            <!-- <Image src={introImg}/> -->
+            <br>
+            <h2>A quick demonstration</h2>
+            <div class="btn-wrapper">
+                <Button btnClass on:click={setVisibleAtoms} btnText="Let's go!" value=''/>
+            </div>
 
-            {:else if visibleButtonPicker}
-                <Image src={moleculesImg}/>
-                <p class="first">This is a molecule consisting of the two prior atoms:</p>
-                <p class="but">(but, with some other characteristics...)</p>
-                <ButtonPicker on:setVisibleSentenceGenerator={setVisibleSentenceGenerator} bind:noOfBtns={noOfBtns}/>
-                <p class="enter">enter a number between 1 and 5</p>
+        {:else if visibleAtoms}
+            <!-- <Image src={atomsImg}/> -->
+            <p>This is an atom:</p>
+            <Input bind:value={value} placeholder='Type your name...'/>
+            <p>This is also an atom:</p>
+            <Button btnClass on:click={setVisibleButtonPicker} btnText='Hello' bind:value={value}>, click me!</Button> 
 
-            {:else if visibleSentenceGenerator}
-                <Image src={organismsImg}/>
-                <p class="p">This is an organism containing the same molecule(s) from before, as well as the input-atom:</p>
-                <div class="sentence-wrapper">
-                    {#each Array(parseInt(noOfBtns)) as component}
-                        <SentenceGenerator on:createSentence={createSentence}/>
-                    {/each}
-                </div>
-                <div class="input-wrapper">
-                    <Input placeholder='Create a sentence with the inputs...' bind:value={result} />
-                </div>
-            {/if}
+        {:else if visibleButtonPicker}
+            <!-- <Image src={moleculesImg}/> -->
+            <p class="first">This is a molecule consisting of the two prior atoms:</p>
+            <p class="but">(but, with some other characteristics...)</p>
+            <ButtonPicker on:setVisibleSentenceGenerator={setVisibleSentenceGenerator} bind:noOfBtns={noOfBtns}/>
+            <p class="enter">enter a number between 1 and 5</p>
 
-        </div>
-    </main>
+        {:else if visibleSentenceGenerator}
+            <!-- <Image src={organismsImg}/> -->
+            <p class="p">This is an organism containing the same molecule(s) from before, as well as the input-atom:</p>
+            <div class="sentence-wrapper">
+                {#each Array(parseInt(noOfBtns)) as component}
+                    <SentenceGenerator on:createSentence={createSentence}/>
+                {/each}
+            </div>
+            <div class="input-wrapper">
+                <Input placeholder='Create a sentence with the inputs...' bind:value={result} />
+            </div>
+        {/if}
+
+    </div>
+
+</main>
 
 <style>
 
@@ -94,6 +99,9 @@
 
     :global(body) {
         margin: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #F5F4DC;
     }
 
     * {
@@ -107,13 +115,14 @@
     }
 
     main {
-        background-color: #F4F3DB;
-        padding-bottom: 3rem;
-        /* width: 100vw; */
-        min-height: 100vh;
+        /* padding-bottom: 3rem; */
+        /* width: 100%; */
+        /* height: 100%; */
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
+        
     }
 
     .wrapper {
@@ -121,12 +130,12 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        
     }
 
     h1 {
+        padding-top: 15rem;
         text-transform: uppercase;
-        margin-top: 2rem;
-        top: 1rem;
         font-size: 42px;
         font-weight: 500;
         letter-spacing: .2rem;

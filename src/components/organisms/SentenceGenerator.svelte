@@ -6,14 +6,22 @@
 
     let dispatch = createEventDispatcher();
 
+    let wordCheck;
+    word.subscribe(value => wordCheck = value);
+
     export let btnText = 'Add';
 
     let checked = false;
     let checkedClass = 'checkedClass';
     
     const handleClick = () => {
-        dispatch('createSentence');
-        checked = true;
+        if (wordCheck.length == 0) {
+            placeholder = 'type something'
+        } else {
+
+            dispatch('createSentence');
+            checked = true;
+        }
     }
 
     const updateWord = (event) => {

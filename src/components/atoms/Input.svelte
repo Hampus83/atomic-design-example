@@ -15,6 +15,7 @@
         text-align: center;
         border: 2px solid black;
         letter-spacing: .05rem;
+        outline: none;
     }
 
 </style>

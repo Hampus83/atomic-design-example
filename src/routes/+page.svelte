@@ -100,7 +100,7 @@
     :global(body) {
         margin: 0;
         width: 100vw;
-        height: 100vh;
+        min-height: 100vh;
         background-color: #F5F4DC;
     }
 
@@ -115,14 +115,13 @@
     }
 
     main {
-        /* padding-bottom: 3rem; */
-        /* width: 100%; */
-        /* height: 100%; */
+        padding-bottom: 3rem;
+        max-width: 100%;
+        max-height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        
     }
 
     .wrapper {
@@ -134,7 +133,7 @@
     }
 
     h1 {
-        padding-top: 15rem;
+        padding-top: 10rem;
         text-transform: uppercase;
         font-size: 42px;
         font-weight: 500;

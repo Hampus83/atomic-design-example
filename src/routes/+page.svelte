@@ -111,6 +111,9 @@
         padding-bottom: 3rem;
         /* width: 100vw; */
         min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .wrapper {

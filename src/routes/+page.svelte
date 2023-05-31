@@ -84,6 +84,7 @@
         padding-bottom: 1rem;
         text-transform: uppercase;
         margin-bottom: 3rem;
+        color: green;
     }
 
     .wrapper {

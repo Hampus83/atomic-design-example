@@ -1,92 +1,46 @@
 <script>
-    import Button from "../components/atoms/Button.svelte";
-    import Input from "../components/atoms/Input.svelte";
-    import ButtonPicker from "../components/molecules/ButtonPicker.svelte";
-    import SentenceGenerator from "../components/organisms/SentenceGenerator.svelte";
-    import { word } from "../store";
-    import introImg from '../assets/intro.svg';
-    import atomsImg from '../assets/atoms.svg';
-    import moleculesImg from '../assets/molecules.svg';
-    import organismsImg from '../assets/organisms.svg';
-    import Image from "../components/atoms/Image.svelte";
-
-    let visibleIntro = true;
-    let visibleAtoms = false;
-    let visibleButtonPicker = false;
-    let visibleSentenceGenerator = false;
-
-    let value = '';
-    let noOfBtns;
-    let sentence = [];
-    let result;
     
-    let setWord;
-    word.subscribe(value => setWord = value);
-
-    const createSentence = () => {
-        sentence.push(setWord);
-        result = sentence.join(' ');
-    }
-
-    const setVisibleAtoms = () => {
-        visibleIntro = false;
-        visibleAtoms = true;
-    }
-
-    const setVisibleButtonPicker = () => {
-        visibleAtoms = false;
-        visibleButtonPicker = true;
-    }
-
-    const setVisibleSentenceGenerator = () => {
-        visibleButtonPicker = false;
-        visibleSentenceGenerator = true;
-    }
 
 </script>
 
 <main>
-
-    <h1>Atomic Design</h1>
-    <Image 
-        src={visibleIntro ? introImg : visibleAtoms ? atomsImg : visibleButtonPicker ? moleculesImg : visibleSentenceGenerator ? organismsImg : null}
-    />
+    <h1>LIA2: Nykundsuppdrag - Bönor & Blad</h1>
 
     <div class="wrapper">
-
-        {#if visibleIntro}
-            <br>
-            <h2>A quick demonstration</h2>
-            <div class="btn-wrapper">
-                <Button btnClass on:click={setVisibleAtoms} btnText="Let's go!" value=''/>
-            </div>
-
-        {:else if visibleAtoms}
-            <p>This is an atom:</p>
-            <Input bind:value={value} placeholder='Type your name...'/>
-            <p>This is also an atom:</p>
-            <Button btnClass on:click={setVisibleButtonPicker} btnText='Hello' bind:value={value}>, click me!</Button> 
-
-        {:else if visibleButtonPicker}
-            <p class="first">This is a molecule consisting of the two prior atoms:</p>
-            <p class="but">(but, with some other characteristics...)</p>
-            <ButtonPicker on:setVisibleSentenceGenerator={setVisibleSentenceGenerator} bind:noOfBtns={noOfBtns}/>
-            <p class="enter">enter a number between 1 and 5</p>
-
-        {:else if visibleSentenceGenerator}
-            <p class="p">This is an organism containing the same molecule(s) from before, as well as the input-atom:</p>
-            <div class="sentence-wrapper">
-                {#each Array(parseInt(noOfBtns)) as component}
-                    <SentenceGenerator on:createSentence={createSentence}/>
-                {/each}
-            </div>
-            <div class="input-wrapper">
-                <Input placeholder='Create a sentence with the inputs...' bind:value={result} />
-            </div>
-        {/if}
-
+        <ol>
+            <li>
+                <a target="_blank" href="https://bonorochblad.se/">Research befintlig site</a>
+            </li>
+            <li>
+                <a target="_blank" href="https://docs.google.com/document/d/1d3T8etdKdfF6BYnMwBeauIivvqRbl5YqCb_zyW9y-dA/edit">Uppstartsmöte med kund</a>
+            </li>
+            <li>
+                <a target="_blank" href="https://www.figma.com/file/5lgdfpo0HowilBTSan6pNF/B%C3%B6nor-%26-Blad?type=design&node-id=0%3A1&t=PdONyLfqzwVvdw3l-1">Figmaskiss</a>
+            </li>
+            <li>
+                <a target="_blank" href="https://docs.google.com/document/d/1TilUDRAq_Rek8SDMnyG3Ug06d3Mt_buTNvsb31FvVgU/edit">Kundmöte: Genomgång av figmaskiss och synpunkter</a>
+            </li>
+            <li>
+                <a target="_blank" href="https://www.figma.com/file/5lgdfpo0HowilBTSan6pNF/B%C3%B6nor-%26-Blad?type=design&node-id=0%3A1&t=PdONyLfqzwVvdw3l-1">Korrigeringar och tillägg i figmaskiss</a>
+            </li>
+        </ol>
+        <ol>
+            <li>
+                <a target="_blank" href="https://test9.cdsuperstore.se/sv/">Utveckling</a>
+            </li>
+            <li>
+                <a target="_blank" href="https://test9.cdsuperstore.se/sv/">Kundtest</a>
+            </li>
+            <li>
+                <a target="_blank" href="https://test9.cdsuperstore.se/sv/">Korrigering</a>
+            </li>
+            <li>
+                <a target="_blank" href="https://test9.cdsuperstore.se/sv/">Lansering</a>
+            </li>
+        </ol>
     </div>
 
+    <a href="https://test9.cdsuperstore.se/webbadmin?funk=edit_front_page&id=1">webbadmin</a>
 </main>
 
 <style>
@@ -95,18 +49,21 @@
 
     :global(body) {
         margin: 0;
-        width: 100vw;
+        max-width: 100vw;
         min-height: 100vh;
-        background-color: #F5F4DC;
+        background-color: #003A43;
+        color: #FF585D;
     }
 
     * {
         box-sizing: border-box;
         margin: 0;
         text-align: center;
+        line-height: 150%;
+        letter-spacing: 0.1em;
     }
     
-    :global(p, h1, h2) {
+    :global(p, li, h1, h2) {
         font-family: 'Oswald', sans-serif;
     }
 
@@ -120,83 +77,66 @@
         align-items: center;
     }
 
+    h1 {
+        margin-top: 5rem;
+        border-bottom: 2px solid #b3b3b3;
+        width: 80%;
+        padding-bottom: 1rem;
+        text-transform: uppercase;
+        margin-bottom: 3rem;
+    }
+
     .wrapper {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         
     }
 
-    h1 {
-        padding-top: 10rem;
-        text-transform: uppercase;
-        font-size: 42px;
-        font-weight: 500;
-        letter-spacing: .2rem;
+    ol {
+        margin-bottom: 3rem;
+        list-style: none;
+        /* counter-reset: counter; */
+        padding-left: 0;
+        /* columns: 2; */
     }
 
-    :global(p) {
-        letter-spacing: .05rem;
+    ol:first-of-type {
+        counter-reset: mycounter;
+    }
+
+    li {
+        text-align: left;
+        padding: 1rem;
         font-size: 20px;
-        margin-bottom: 1rem;
-        padding: 0 .5rem 0 .5rem;
-    }
-
-    p {
-        letter-spacing: .05rem;
-        font-size: 20px;
-        margin-bottom: 1rem;
-        padding: 0 .5rem 0 .5rem;
-        margin-top: 1.2rem;
-    }
-
-    h2 {
-        margin-top: 2rem;
-        letter-spacing: .2rem;
-        font-weight: 400;
-    }
-
-    .sentence-wrapper {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        padding: 0 4rem;
-        gap: 2rem;
+        position: relative;
         margin-bottom: 2rem;
+        font-weight: 300;
     }
 
-    .input-wrapper {
-        width: 80%;
+    li::before {
+        counter-increment: mycounter;
+        content: counter(mycounter);
+        color: #b3b3b3;
+        font-weight: 900;
+        font-style: italic;
+        font-size: 14px;
+        position: absolute;
+        top: -1.7%;
+        left: 1.2rem;
     }
 
-    .first {
-        margin-bottom: .5rem;
+    li a {
+        padding: .5rem 1rem;
+        border: 2px solid transparent;
     }
 
-    .but {
-        margin-top: 0;
-        color: #C16100;
-        font-size: 18px;
+    li a:hover {
+        border-color: #FF585D;
+        transition: .15s ease-in-out;
     }
 
-    .enter {
-        margin: 0;
-        margin-left: -5.5rem;
-        font-size: 16px;
-    }
-
-    .input-wrapper :global(input) {
-        font-size: 20px;
-        padding: .5rem;
-        text-align: center;
-        border: 2px solid black;
-        width: 100%;
-        letter-spacing: .05rem;
-    }
-
-    .btn-wrapper :global(button) {
-        margin-top: 5rem;
+    a {
+        text-decoration: none;
+        color: inherit;
     }
 
 </style>
